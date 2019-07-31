@@ -6,10 +6,10 @@ ENV LANG=C.UTF-8
 
 RUN apt-get update && \
     apt-get install -y  -q --no-install-recommends \
-    git mercurial xvfb \
+    mercurial xvfb \
     locales sudo openssh-client ca-certificates tar gzip parallel \
     net-tools netcat unzip zip bzip2 apt-transport-https build-essential libssl-dev \
-    curl g++ gcc git make wget && rm -rf /var/lib/apt/lists/* && apt-get -y autoclean && \
+    curl g++ gcc git make wget && apt-get -y autoclean && \
 
 # Set timezone to CST by default
     ln -sf /usr/share/zoneinfo/PRC /etc/localtime && \
