@@ -10,7 +10,7 @@ RUN apt-get update && \
     mercurial xvfb \
     locales sudo openssh-client ca-certificates tar gzip parallel \
     net-tools netcat unzip zip bzip2 apt-transport-https build-essential libssl-dev \
-    curl g++ gcc git make wget && rm -rf /var/lib/apt/lists/* && apt-get -y autoclean && \
+    curl g++ gcc git make wget libgcc libstdc++ linux-headers && rm -rf /var/lib/apt/lists/* && apt-get -y autoclean && \
 
 # Set timezone to CST by default
     ln -sf /usr/share/zoneinfo/PRC /etc/localtime && \
@@ -18,8 +18,34 @@ RUN apt-get update && \
     JQ_URL=$(curl --location --fail --retry 3 https://api.github.com/repos/stedolan/jq/releases/latest  | grep browser_download_url | grep '/jq-linux64"' | grep -o -e 'https.*jq-linux64') && \
     curl --silent --show-error --location --fail --retry 3 --output /usr/bin/jq $JQ_URL && \
     chmod +x /usr/bin/jq
-# Install chromedriver node-sass
-RUN wget -O /tmp/chromedriver_linux64.zip https://npm.taobao.org/mirrors/chromedriver/2.46/chromedriver_linux64.zip
+    
+# Install chromedriver
+RUN wget -O /tmp/chromedriver_linux64.zip https://npm.taobao.org/mirrors/chromedriver/2.46/chromedriver_linux64.zip && \
+    npm install chromedriver --chromedriver_filepath=/tmp/chromedriver_linux64_2.46.zip && \
+    rm -rf /tmp/*
+    
+# install libsass
+RUN git clone https://github.com/sass/sassc && cd sassc && \
+    git clone https://github.com/sass/libsass && \
+    SASS_LIBSASS_PATH=/sassc/libsass make && \
+    mv bin/sassc /usr/bin/sassc && \
+    cd ../ && rm -rf /sassc
+
+# created node-sass binary
+ENV SASS_BINARY_PATH=/usr/lib/node_modules/node-sass/build/Release/binding.node
+RUN git clone --recursive https://github.com/sass/node-sass.git && \
+    cd node-sass && \
+    git submodule update --init --recursive && \
+    npm install && \
+    node scripts/build -f && \
+    cd ../ && rm -rf node-sass
+
+# add binary path of node-sass to .npmrc
+RUN touch $HOME/.npmrc && echo "sass_binary_cache=${SASS_BINARY_PATH}" >> $HOME/.npmrc
+
+ENV SKIP_SASS_BINARY_DOWNLOAD_FOR_CI true
+ENV SKIP_NODE_SASS_TESTS true
+
 # Install other app
 RUN npm install -g node-gyp && \
     npm i -g @webpack-contrib/tag-versions && \
