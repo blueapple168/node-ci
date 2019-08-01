@@ -18,9 +18,13 @@ RUN apt-get update && \
     JQ_URL=$(curl --location --fail --retry 3 https://api.github.com/repos/stedolan/jq/releases/latest  | grep browser_download_url | grep '/jq-linux64"' | grep -o -e 'https.*jq-linux64') && \
     curl --silent --show-error --location --fail --retry 3 --output /usr/bin/jq $JQ_URL && \
     chmod +x /usr/bin/jq
-    
+
 # Install other app
 RUN npm i -g @webpack-contrib/tag-versions && \
-    npm install && \
-    npm -g install vuepress && \
-    npm -g install node-sass
+    npm install -g vuepress && \
+    npm install -g node-sass && \
+    npm install -g express && \
+    npm install -g webpack && \
+    npm install -g vue && \
+    npm install -g vue-cli && \
+    npm install
