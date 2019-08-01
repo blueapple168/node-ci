@@ -10,7 +10,7 @@ RUN apt-get update && \
     mercurial xvfb \
     locales sudo openssh-client ca-certificates tar gzip parallel \
     net-tools netcat unzip zip bzip2 apt-transport-https build-essential libssl-dev \
-    curl g++ gcc git make wget libgcc libstdc++ linux-headers && rm -rf /var/lib/apt/lists/* && apt-get -y autoclean && \
+    curl g++ gcc git make wget && rm -rf /var/lib/apt/lists/* && apt-get -y autoclean && \
 
 # Set timezone to CST by default
     ln -sf /usr/share/zoneinfo/PRC /etc/localtime && \
