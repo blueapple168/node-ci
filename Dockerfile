@@ -63,7 +63,7 @@ RUN npm install -g node-gyp && \
     npm install -g bower && \
     npm install -g gulp && \
     npm install -g ant-design-vue@1.3.9 && \
-    npm install -g install less@3.8.1 && \
+    npm install -g less@3.8.1 && \
     npm install -g less-loader@4.1.0 && \
     npm install -g axios@0.18.0 && \
     npm install -g js-base64@2.5.1 && \
