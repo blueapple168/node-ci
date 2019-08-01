@@ -20,11 +20,11 @@ RUN apt-get update && \
     chmod +x /usr/bin/jq
 
 # Install other app
-RUN npm i -g @webpack-contrib/tag-versions && \
-    npm install -g vuepress && \
+RUN npm install -g vue && \
+    npm install -g vue-cli && \
+    npm install -g vuepress && \    
+    npm i -g @webpack-contrib/tag-versions && \
+    npm install -g webpack && \
     npm install -g node-sass && \
     npm install -g express && \
-    npm install -g webpack && \
-    npm install -g vue && \
-    npm install -g vue-cli && \
     npm install
