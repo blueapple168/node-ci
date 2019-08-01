@@ -49,7 +49,8 @@ ENV SKIP_SASS_BINARY_DOWNLOAD_FOR_CI true
 ENV SKIP_NODE_SASS_TESTS true
 
 # Install other app
-RUN npm install -g node-gyp && \
+RUN npm init && \
+    npm install -g node-gyp && \
     npm i -g @webpack-contrib/tag-versions && \
     npm install -g vuepress && \
     npm install -g postcss-cli && \
@@ -57,8 +58,26 @@ RUN npm install -g node-gyp && \
     npm install -g express && \
     npm install -g webpack && \
     npm install -g vue && \
+    npm install -g vue-cropper && \
     npm install -g vue-cli && \
+    npm install -g vue-ls && \
+    npm install -g vue-router && \
+    npm install -g vue-svg-component-runtime && \
+    npm install -g vuex && \
     npm install -g grunt-cli && \
     npm install -g bower && \
     npm install -g gulp && \
+    npm install -g @antv/data-set@0.10.1 && \
+    npm install -g ant-design-vue@1.3.9 && \
+    npm install -g install less@3.8.1 && \
+    npm install -g less-loader@4.1.0 && \
+    npm install -g axios@0.18.0 && \
+    npm install -g js-base64@2.5.1 && \
+    npm install -g enquire.js@2.1.6 && \
+    npm install -g moment@2.24.0 && \
+    npm install -g nprogress@0.2.0 && \
+    npm install -g lodash.clonedeep@4.5.0 && \
+    npm install -g lodash.get@4.4.2 && \
+    npm install -g lodash.pick@4.4.0 && \
+    npm install -g cnpm --registry=https://registry.npm.taobao.org && \
     npm install
