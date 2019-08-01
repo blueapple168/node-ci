@@ -1,12 +1,10 @@
 FROM node:10.16-jessie
 
 MAINTAINER blueapple1120@qq.com
-# Use unicode
-RUN locale-gen C.UTF-8 || true
-ENV LANG=C.UTF-8
 
+# Update install
 RUN apt-get update && \
-    apt-get install -y  -q --no-install-recommends \
+    apt-get install -y  -q --no-install-recommends apt-utils \
     mercurial xvfb \
     locales sudo openssh-client ca-certificates tar gzip parallel \
     net-tools netcat unzip zip bzip2 apt-transport-https build-essential libssl-dev \
@@ -18,6 +16,10 @@ RUN apt-get update && \
     JQ_URL=$(curl --location --fail --retry 3 https://api.github.com/repos/stedolan/jq/releases/latest  | grep browser_download_url | grep '/jq-linux64"' | grep -o -e 'https.*jq-linux64') && \
     curl --silent --show-error --location --fail --retry 3 --output /usr/bin/jq $JQ_URL && \
     chmod +x /usr/bin/jq
+    
+# Use unicode
+RUN locale-gen C.UTF-8 || true
+ENV LANG=C.UTF-8
 
 # Install other app
 RUN npm install -g vue && \
