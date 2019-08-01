@@ -22,7 +22,9 @@ RUN apt-get update && \
 # Install chromedriver
 RUN wget -O /tmp/chromedriver_linux64.zip https://npm.taobao.org/mirrors/chromedriver/2.46/chromedriver_linux64.zip && \
     npm install chromedriver --chromedriver_filepath=/tmp/chromedriver_linux64_2.46.zip && \
-    rm -rf /tmp/*
+    rm -rf /tmp/* \
+           /var/tmp/* \
+           /var/cache/*
     
 # install libsass
 RUN git clone https://github.com/sass/sassc && cd sassc && \
