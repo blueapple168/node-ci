@@ -17,11 +17,7 @@ RUN apt-get update && \
 # Install jq    
     JQ_URL=$(curl --location --fail --retry 3 https://api.github.com/repos/stedolan/jq/releases/latest  | grep browser_download_url | grep '/jq-linux64"' | grep -o -e 'https.*jq-linux64') && \
     curl --silent --show-error --location --fail --retry 3 --output /usr/bin/jq $JQ_URL && \
-    chmod +x /usr/bin/jq
-    
-# Install chromedriver
-RUN wget -O /tmp/chromedriver_linux64.zip https://npm.taobao.org/mirrors/chromedriver/2.46/chromedriver_linux64.zip && \
-    npm install chromedriver --chromedriver_filepath=/tmp/chromedriver_linux64_2.46.zip && \
+    chmod +x /usr/bin/jq && \
     rm -rf /tmp/* \
            /var/tmp/* \
            /var/cache/*
