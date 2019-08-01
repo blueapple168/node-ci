@@ -32,4 +32,5 @@ RUN npm install -g node-gyp && \
     npm install -g vue-cli && \
     npm install -g grunt-cli && \
     npm install -g bower && \
+    npm install -g gulp && \
     npm install
