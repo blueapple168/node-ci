@@ -45,8 +45,7 @@ ENV SKIP_SASS_BINARY_DOWNLOAD_FOR_CI true
 ENV SKIP_NODE_SASS_TESTS true
 
 # Install other app
-RUN npm init && \
-    npm install -g node-gyp && \
+RUN npm install -g node-gyp && \
     npm i -g @webpack-contrib/tag-versions && \
     npm install -g vuepress && \
     npm install -g postcss-cli && \
@@ -63,7 +62,6 @@ RUN npm init && \
     npm install -g grunt-cli && \
     npm install -g bower && \
     npm install -g gulp && \
-    npm install -g @antv/data-set@0.10.1 && \
     npm install -g ant-design-vue@1.3.9 && \
     npm install -g install less@3.8.1 && \
     npm install -g less-loader@4.1.0 && \
