@@ -1,6 +1,10 @@
-FROM node:10.16-jessie
-
+ARG NODE_IMAGE_TAG=lts-buster
+FROM node:$NODE_IMAGE_TAG
 MAINTAINER blueapple1120@qq.com
+
+LABEL node.version="14.15.1" \
+      npm.version="6.14.8"
+      
 # Use unicode
 RUN locale-gen C.UTF-8 || true
 ENV LANG=C.UTF-8
